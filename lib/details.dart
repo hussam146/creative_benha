@@ -10,9 +10,58 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(dataModel.text!),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // image
+            Stack(
+              alignment: Alignment.topLeft,
+              children: [
+                Image.asset(
+                  dataModel.image!,
+                  fit: BoxFit.fill,
+                  width: MediaQuery.of(context).size.width,
+                  height: 250.0,
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new_sharp,
+                    color: Color.fromARGB(255, 255, 136, 0),
+                  ),
+                ),
+              ],
+            ),
+            // Text
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                dataModel.text!,
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 255, 136, 0),
+                ),
+              ),
+            ),
+            // desc
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                dataModel.desc!,
+                maxLines: 15,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.grey[600],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
